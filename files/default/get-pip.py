@@ -147,7 +147,7 @@ def bootstrap(tmpdir=None):
 
     # Add any implicit installations to the end of our args
     if implicit_pip:
-        args += ["pip<10"]
+        args += ["pip==9.0.3"]
     if implicit_setuptools:
         args += ["setuptools<37"]
     if implicit_wheel:
@@ -169,7 +169,7 @@ def bootstrap(tmpdir=None):
 
         # Execute the included pip and use it to install the latest pip and
         # setuptools from PyPI
-        sys.exit(pip.main(["install", "--upgrade"] + args))
+        sys.exit(pip.main(["install", "--upgrade", "--force-reinstall"] + args))
     finally:
         # Remove our temporary directory
         if delete_tmpdir and tmpdir:
